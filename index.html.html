@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>ATTENTION : Message Important — Protocole MPH</title>
+
+  <!-- SCRIPT KASHPAY (COM SUPORTE A DELAY DE 220s / 3m40s) -->
+  <script src="https://checkout.kashpay.com.br/scripts/upsell-processor.js" data-kashpay-upsell-delay-support></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -127,19 +131,12 @@
       font-weight: 700;
     }
 
-    /* Container da KashPay (Escondido por padrao para acompanhar o Delay) */
-    .kashpay-container {
+    /* Container dos Botões KashPay */
+    .kashpay-wrapper {
       width: 100%;
-      display: none; 
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -174,21 +171,18 @@
       </div>
     </div>
 
-    <!-- ÁREA DOS BOTÕES DA KASHPAY (COM DELAY CONFIGURADO) -->
-    <div id="kashpay-pitch" class="kashpay-container">
-      <!-- COLE AQUI O SCRIPT / BOTÃO NATIVO DA KASHPAY -->
+    <!-- ÁREA DOS BOTÕES KASHPAY (COM DELAY DE 220s GERENCIADO PELO SCRIPT) -->
+    <div class="kashpay-wrapper">
+      <div data-kashpay-upsell-delay="220" style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%;">
+        <button type="button" onclick="acceptUpsell('https://checkout.kashpay.com.br/u/24f842e9f6d18fcc')" style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #057932; border: none; border-radius: 10px; padding: 16px 7%; cursor: pointer; text-align: center; display: block; margin: auto; width: 100%; max-width: 500px; box-shadow: 0 4px 14px rgba(5, 121, 50, 0.4);">
+          OUI ! AJOUTER À MON COMMANDE POUR 37 €
+        </button>
+        <button type="button" onclick="declineUpsell('https://checkout.kashpay.com.br/u/24f842e9f6d18fcc')" style="font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #dc2626; border: none; border-radius: 10px; padding: 12px 5%; cursor: pointer; text-align: center; display: block; margin: auto; width: 100%; max-width: 450px;">
+          Non merci, je refuse l'Accélérateur 7X
+        </button>
+      </div>
     </div>
   </main>
-
-  <!-- Script para exibiçao com Delay -->
-  <script>
-    // Tempo de delay em segundos (ex: 150s = 2 min e 30s)
-    const DELAY_IN_SECONDS = 150; 
-
-    setTimeout(function() {
-      document.getElementById('kashpay-pitch').style.display = 'flex';
-    }, DELAY_IN_SECONDS * 1000);
-  </script>
 
 </body>
 </html>
