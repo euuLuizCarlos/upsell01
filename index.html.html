@@ -184,5 +184,18 @@
     </div>
   </main>
 
+  <!-- SCRIPT DE BACK REDIRECT PARA O DOWNSELL -->
+  <script>
+    (function () {
+      var downsellUrl = 'https://downsell01-mu.vercel.app/';
+
+      history.pushState(null, null, location.href);
+      window.onpopstate = function () {
+        history.pushState(null, null, location.href);
+        window.location.href = downsellUrl;
+      };
+    })();
+  </script>
+
 </body>
 </html>
